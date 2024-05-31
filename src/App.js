@@ -1,25 +1,25 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import Ver from './components/Ver';
+import Editar from './components/Editar';
+
 import './App.css';
 
-function App() {
+
+const App = () => {
+  const initialUserInfo = { name: 'Luis', lastName: 'Gutierrez', role: 'teacher' };
+  const [userInfo, setUserInfo] = useState(initialUserInfo);
+  const [editing, setEditing] = useState(false);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {editing ? (
+        <Editar userInfo={userInfo} setUserInfo={setUserInfo} setEditing={setEditing} />
+      ) : (
+        <Ver userInfo={userInfo} setEditing={setEditing} />
+      )}
     </div>
   );
-}
+};
 
 export default App;
+
